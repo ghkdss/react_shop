@@ -1,6 +1,6 @@
 import style from './App.module.css'
 import data from './mokData'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import Header from './components/Header'
@@ -34,7 +34,18 @@ const Div = styled.div`
 
 
 function App() {
-  const [fruit, setFruit] = useState(data);
+  const [fruit, setFruit] = useState([]);
+  
+  useEffect(() => {
+    axios.get('https://raw.githubusercontent.com/ghkdss/react_sample_data/main/fruit.json')
+      .then(response => {
+        // console.log(response.data);
+        setFruit([...response.data]);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, [])
 
   return (
     <div className={style.container}>
