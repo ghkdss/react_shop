@@ -41,6 +41,16 @@ function Detail({ fruit }) {
   // useEffect(() => {
   //   console.log('useEffect 확인용 콘솔')
   // }, [num])
+
+  useEffect(() => {
+    // 방금 들어온 상품의 id를 로컬스토리지에 추가
+    let watched = localStorage.getItem('watched');
+    watched = JSON.parse(watched);
+    watched = [id, ...watched];
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }, [])
+
+
   
   
   if( !selectedFruit ) {
