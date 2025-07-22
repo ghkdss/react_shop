@@ -1,14 +1,11 @@
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addCount, removeItem } from "../redux/cartSlice";
 
 function Cart() {
-  const test = useSelector((state) => {
-    return state.test
-  })
-  const item = useSelector(state => state.item)
+  const cart = useSelector(state => state.cart);
 
-  console.log(test);
-  console.log(item);
+  const dispatch = useDispatch();
 
   return (
     <Table>
@@ -18,15 +15,27 @@ function Cart() {
           <th>상품명</th>
           <th>수량</th>
           <th>수정</th>
+          <th>삭제</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>apple</td>
-          <td>10</td>
-          <td>수정하기</td>
-        </tr>
+        {
+          cart.map((item, i) => {
+            return (
+              <tr key={i}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.count}</td>
+                <td><button onClick={() => {
+                  dispatch( addCount(i) )
+                }}>+</button></td>
+                <td><button onClick={() => {
+                  dispatch( removeItem(i) )
+                }}>X</button></td>
+              </tr>
+            )
+          })
+        }
       </tbody>
     </Table>
   )
