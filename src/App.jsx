@@ -51,7 +51,7 @@ function App() {
   return (
     <div className={style.container}>
       <Header />
-
+      <h1>ㅋㅋㅋㅋㅋㅋㅋㅋ수정함</h1>
       <Routes>
         <Route path='/' element={<MainPage fruit={fruit} />} />
         <Route path='/detail/:id' element={<Detail fruit={fruit} />} />
