@@ -4,6 +4,8 @@ import './TabContent.css'
 function TabContent({ tabNumber }) {
   const [fade, setFade] = useState('');
 
+  console.log('TabContent컴포넌트 렌더링')
+
 // state를 업데이트하는 작업은 비동기로 처리함
 // state를 변경하는 함수를 호출하면 바로 반영하는게 아니라 내부적으로 일단 저장해둠
 // 그리고 한번에 모아둔 변경처리를 일괄적으로 함 -> 렌더링을 한번만 하게 됨
